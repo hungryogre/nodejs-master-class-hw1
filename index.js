@@ -22,8 +22,8 @@ handlers.hello = (data, callback) => {
 
 //URI routes should correspond to the appropriate handlers
 let routes = {
-    'ping': handlers.ping,
-    'hello': handlers.hello
+    '/ping': handlers.ping,
+    '/hello': handlers.hello
 }
 
 //Define API Server
@@ -32,7 +32,7 @@ const apiServer = (req, res) => {
     let method = req.method.toUpperCase()
     let { headers } = req
     let { pathname, query } = parsedUrl
-    let route = pathname.replace(/^\/+|\/+$/g, '')
+    let route = pathname.replace(/\/+$/g, '')
     let decoder = new StringDecoder('utf-8')
     let input = ''
     req.on('data', data => input += decoder.write(data))
